@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         InvokeRepeating("CreateEnemyOne", 1, 2);
-        InvokeRepeating("CreateEnemyTwo", 2, 4);
+        InvokeRepeating("CreateEnemyTwo", 2, 3);
     }
 
     // Update is called once per frame
@@ -28,6 +28,6 @@ public class GameManager : MonoBehaviour
 
     void CreateEnemyTwo()
     {
-        Instantiate(enemyTwoPrefab, new Vector3(Random.Range(-9f, 9f), 6.5f, 0), Quaternion.identity);
+        Instantiate(enemyTwoPrefab, new Vector3(Random.Range(-4.5f, 4.5f), 6.5f, 0), Quaternion.identity);
     }
 }
