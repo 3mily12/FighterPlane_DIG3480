@@ -587,6 +587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   enemyOnePrefab: {fileID: 8882489797733031165, guid: c49f8ecf3968ae54297078250af425f4, type: 3}
+  enemyTwoPrefab: {fileID: 1476458882506594272, guid: c5161b40b4024914788a9fcc9195983a, type: 3}
 --- !u!4 &2057593312
 Transform:
   m_ObjectHideFlags: 0
