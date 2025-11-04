@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
@@ -16,6 +17,13 @@ public class Player : MonoBehaviour
 
     private float horizontalScreenLimit = 9.5f;
     private float verticalScreenLimit = 6.5f;
+
+    // ---VERTICAL COLLIDER VARIABLES (Emily)
+    // Center of screen
+    private float verticalUpLimit = 0.0f;
+
+    // 4 units below screen center (bottom of the game screen for me)
+    private float verticalDownLimit = -4.0f;
 
     public GameObject bulletPrefab;
 
@@ -59,9 +67,19 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(transform.position.x * -1, transform.position.y, 0);
         }
         //Player leaves the screen vertically --> || represents "or". && is "and".
-        if (transform.position.y > verticalScreenLimit || transform.position.y < -verticalScreenLimit)
+        //if (transform.position.y > verticalScreenLimit || transform.position.y < -verticalScreenLimit)
+        //{
+        //transform.position = new Vector3(transform.position.x, transform.position.y * -1, 0);
+        //}
+
+        // Vertical colliders (Emily)
+        if (transform.position.y < verticalDownLimit)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y * -1, 0);
+            transform.position = new Vector3(transform.position.x, verticalDownLimit, 0);
+        }
+        if (transform.position.y > verticalUpLimit)
+        {
+            transform.position = new Vector3(transform.position.x, verticalUpLimit, 0);
         }
     }
 
