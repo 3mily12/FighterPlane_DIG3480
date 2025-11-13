@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 190119924}
   - component: {fileID: 190119923}
   - component: {fileID: 190119922}
-  - component: {fileID: 190119921}
+  - component: {fileID: 190119926}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -139,19 +139,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &190119921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 190119920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e97f611f859cc4143a3a1a145498bf58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player
-  bulletPrefab: {fileID: 3110709207158178822, guid: 1bea016faff6686449f22e10d305ccd1, type: 3}
 --- !u!65 &190119922
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -244,6 +231,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &190119926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190119920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97f611f859cc4143a3a1a145498bf58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  bulletPrefab: {fileID: 3110709207158178822, guid: 1bea016faff6686449f22e10d305ccd1, type: 3}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,7 +566,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2057593312}
-  - component: {fileID: 2057593311}
+  - component: {fileID: 2057593313}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -574,20 +574,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2057593311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2057593310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 803bdd1e576bdb040a0950d8ed8f8820, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  enemyOnePrefab: {fileID: 8882489797733031165, guid: c49f8ecf3968ae54297078250af425f4, type: 3}
-  enemyTwoPrefab: {fileID: 1476458882506594272, guid: c5161b40b4024914788a9fcc9195983a, type: 3}
 --- !u!4 &2057593312
 Transform:
   m_ObjectHideFlags: 0
@@ -603,6 +589,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2057593313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057593310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 803bdd1e576bdb040a0950d8ed8f8820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TestScript
+  enemyOnePrefab: {fileID: 8882489797733031165, guid: c49f8ecf3968ae54297078250af425f4, type: 3}
+  enemyTwoPrefab: {fileID: 1476458882506594272, guid: c5161b40b4024914788a9fcc9195983a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
