@@ -870,12 +870,13 @@ MonoBehaviour:
   enemyOnePrefab: {fileID: 8882489797733031165, guid: c49f8ecf3968ae54297078250af425f4, type: 3}
   enemyTwoPrefab: {fileID: 1476458882506594272, guid: c5161b40b4024914788a9fcc9195983a, type: 3}
   cloudPrefab: {fileID: 8901978872678414076, guid: 93ab615ed852ff94cb913700bf5aff20, type: 3}
+  coinPrefab: {fileID: 5910786031732568345, guid: 58281a69499a4aa42b87d0f561bbe3ef, type: 3}
   livesText: {fileID: 1865339266}
   scoreText: {fileID: 1822251748}
   horizontalScreenSize: 0
   verticalScreenSize: 0
   score: 0
---- !u!1001 &3281426603516914924
+--- !u!1001 &1888437090584971280
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -885,7 +886,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2767999106981475240, guid: 58281a69499a4aa42b87d0f561bbe3ef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.23048
       objectReference: {fileID: 0}
     - target: {fileID: 2767999106981475240, guid: 58281a69499a4aa42b87d0f561bbe3ef, type: 3}
       propertyPath: m_LocalPosition.y
@@ -893,7 +894,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2767999106981475240, guid: 58281a69499a4aa42b87d0f561bbe3ef, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: -4.51479
       objectReference: {fileID: 0}
     - target: {fileID: 2767999106981475240, guid: 58281a69499a4aa42b87d0f561bbe3ef, type: 3}
       propertyPath: m_LocalRotation.w
@@ -941,4 +942,4 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 2057593312}
   - {fileID: 658015444}
-  - {fileID: 3281426603516914924}
+  - {fileID: 1888437090584971280}
