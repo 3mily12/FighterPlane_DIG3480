@@ -50,6 +50,7 @@ public class Two_GameManager : MonoBehaviour
         Instantiate(enemyTwoPrefab, new Vector3(Random.Range(-4.5f, 4.5f), 6.5f, 0), Quaternion.identity);
     }
 
+    //Coin spawn range matches player movement range - Jacob A.
     void CreateCoin()
     {
         Instantiate(coinPrefab, new Vector3(Random.Range(-9f, 9f), Random.Range(-4f, 0f), 0), Quaternion.identity);
