@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Two_Player : MonoBehaviour
+public class Three_Player : MonoBehaviour
 {
     //how to define a variable
     //1. access modifier: public or private
@@ -14,7 +14,7 @@ public class Two_Player : MonoBehaviour
     public int lives;
 
     private float playerSpeed;
-    private Two_GameManager gameManager;
+    private Three_GameManager gameManager;
 
     private float horizontalInput;
     private float verticalInput;
@@ -34,7 +34,7 @@ public class Two_Player : MonoBehaviour
 
     void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<Two_GameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<Three_GameManager>();
         lives = 3;
         playerSpeed = 6f;
         gameManager.ChangeLivesText(lives);

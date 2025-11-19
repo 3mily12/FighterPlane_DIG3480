@@ -818,6 +818,7 @@ GameObject:
   - component: {fileID: 2057593312}
   - component: {fileID: 2057593313}
   - component: {fileID: 2057593314}
+  - component: {fileID: 2057593315}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -861,7 +862,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057593310}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 295cb89a73564d043b0519e0902fd845, type: 3}
   m_Name: 
@@ -875,6 +876,36 @@ MonoBehaviour:
   scoreText: {fileID: 1822251748}
   horizontalScreenSize: 0
   verticalScreenSize: 0
+  score: 0
+--- !u!114 &2057593315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057593310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10731bf1d94678040aae39ba4fdfcf11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Three_GameManager
+  playerPrefab: {fileID: 5049865414245372671, guid: 240e777f04345c94abf889a4e8baaeac, type: 3}
+  enemyOnePrefab: {fileID: 8882489797733031165, guid: 374f66b0b9976174d8fb1eb3e9652023, type: 3}
+  enemyTwoPrefab: {fileID: 1476458882506594272, guid: 36e023e5494fd5943859a79ac275ebfd, type: 3}
+  cloudPrefab: {fileID: 8901978872678414076, guid: f0ccdf4121438b34582a3ec84c9934db, type: 3}
+  coinPrefab: {fileID: 5910786031732568345, guid: db5969cb5b23c084b937bf4dc90d1738, type: 3}
+  gameOverText: {fileID: 0}
+  powerUpPrefab: {fileID: 8882489797733031165, guid: ecce765e510e35649b96f54cb0020f14, type: 3}
+  audioPlayer: {fileID: 0}
+  powerUpSound: {fileID: 0}
+  powerDownSound: {fileID: 0}
+  livesText: {fileID: 1865339266}
+  scoreText: {fileID: 1822251748}
+  powerUpText: {fileID: 0}
+  horizontalScreenSize: 0
+  verticalScreenSize: 0
+  gameOver: 0
+  cloudMovement: 0
   score: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

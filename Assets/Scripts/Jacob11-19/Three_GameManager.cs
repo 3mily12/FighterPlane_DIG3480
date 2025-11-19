@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 
-public class Two_GameManager : MonoBehaviour
+public class Three_GameManager : MonoBehaviour
 {
 
     public GameObject playerPrefab;
@@ -10,13 +10,25 @@ public class Two_GameManager : MonoBehaviour
     public GameObject enemyTwoPrefab;
     public GameObject cloudPrefab;
     public GameObject coinPrefab;
+    public GameObject gameOverText;
+   
+    //Enables on Start
+    public GameObject powerUpPrefab;
+    public GameObject audioPlayer;
+
+    public AudioClip powerUpSound;
+    public AudioClip powerDownSound;
 
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI powerUpText;
 
     public float horizontalScreenSize;
     public float verticalScreenSize;
 
+    public bool gameOver;
+
+    public int cloudMovement;
     public int score;
 
     // Start is called before the first frame update
@@ -25,12 +37,36 @@ public class Two_GameManager : MonoBehaviour
         horizontalScreenSize = 10f;
         verticalScreenSize = 6.5f;
         score = 0;
+        cloudMovement = 1;
+        gameOver = false;
         Instantiate(playerPrefab, transform.position, Quaternion.identity);
+        AddScore(0);
+
         CreateSky();
+
         InvokeRepeating("CreateEnemyOne", 1, 2);
         InvokeRepeating("CreateEnemyTwo", 2, 3);
         InvokeRepeating("CreateCoin", 2, 3);
+        
+        StartCoroutine(SpawnPowerup());
+        //powerUpText.text = "No Powers Yet";
+        
     }
+
+    IEnumerator SpawnPowerup() 
+    {
+        float spawnTime = Random.Range(3,5);
+        yield return new WaitForSeconds(spawnTime);
+        CreatePowerup();
+        StartCoroutine(SpawnPowerup());
+    }
+
+    void CreatePowerup() 
+    {
+        Instantiate(powerUpPrefab, new Vector3(Random.Range(-horizontalScreenSize * 0.8f, horizontalScreenSize * 0.8f), Random.Range(0 *0.8f, -4.0f), 0), Quaternion.identity);
+        Debug.Log("power up created");
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -64,7 +100,7 @@ public class Two_GameManager : MonoBehaviour
     }
     public void AddScore(int earnedScore)
     {
-        score += earnedScore;
+        score = score + earnedScore;
     }
 
     public void ChangeLivesText(int currentLives)
