@@ -58,6 +58,7 @@ public class Three_Player : MonoBehaviour
         {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
+            gameManager.GameOver();
         }
     }
     void Shooting()

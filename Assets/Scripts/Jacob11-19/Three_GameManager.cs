@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Three_GameManager : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class Three_GameManager : MonoBehaviour
     public GameObject cloudPrefab;
     public GameObject coinPrefab;
     public GameObject gameOverText;
-   
+    public GameObject restartText;
+
     //Enables on Start
     public GameObject powerUpPrefab;
     public GameObject audioPlayer;
@@ -22,6 +24,7 @@ public class Three_GameManager : MonoBehaviour
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI powerUpText;
+    
 
     public float horizontalScreenSize;
     public float verticalScreenSize;
@@ -72,6 +75,10 @@ public class Three_GameManager : MonoBehaviour
     void Update()
     {
         scoreText.text = "Score: " + score;
+        if (gameOver && Input.GetKeyDown(KeyCode.R)) 
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     void CreateEnemyOne()
@@ -106,5 +113,14 @@ public class Three_GameManager : MonoBehaviour
     public void ChangeLivesText(int currentLives)
     {
         livesText.text = "Lives: " + currentLives;
+    }
+
+    public void GameOver() 
+    { 
+        gameOverText.SetActive(true);
+        restartText.SetActive(true);
+        gameOver = true;
+        CancelInvoke();
+        cloudMovement = 0;
     }
 }
