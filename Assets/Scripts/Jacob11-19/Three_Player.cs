@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -12,6 +13,7 @@ public class Three_Player : MonoBehaviour
     //4. value: optional
 
     public int lives;
+    private int weaponType;
 
     private float playerSpeed;
     private Three_GameManager gameManager;
@@ -24,6 +26,8 @@ public class Three_Player : MonoBehaviour
 
     public GameObject bulletPrefab;
     public GameObject explosionPrefab;
+    public GameObject thrusterPrefab;
+    public GameObject shieldPrefab;
 
     // ---VERTICAL COLLIDER VARIABLES (Emily)
     // Center of screen
@@ -38,6 +42,8 @@ public class Three_Player : MonoBehaviour
         lives = 3;
         playerSpeed = 6f;
         gameManager.ChangeLivesText(lives);
+        weaponType = 1;
+        thrusterPrefab.SetActive(false);
         //This is like a create script in GMS
 
     }
@@ -99,6 +105,66 @@ public class Three_Player : MonoBehaviour
         if (transform.position.y > verticalUpLimit)
         {
             transform.position = new Vector3(transform.position.x, verticalUpLimit, 0);
+        }
+    }
+
+    IEnumerator SpeedPowerDown() 
+    { 
+        yield return new WaitForSeconds(3f);
+        playerSpeed = 6f;
+        gameManager.ManagePowerupText(0);
+        gameManager.PlaySound(2);
+        thrusterPrefab.SetActive(false);
+    }
+
+    IEnumerator WeaponPowerDown()
+    {
+        yield return new WaitForSeconds(3f);
+        weaponType = 1;
+        gameManager.ManagePowerupText(0);
+        gameManager.PlaySound(2);
+    }
+
+    //Power up activates when collided with by player
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Powerup") 
+        {
+            Destroy(collision.gameObject);
+            int whichPowerup = Random.Range(1, 4);
+            gameManager.PlaySound(1);
+            switch (whichPowerup) 
+            {
+                case 1:
+                    //speed boost
+                    playerSpeed = 10f;
+                    thrusterPrefab.SetActive(true);
+                    StartCoroutine(SpeedPowerDown());
+                    gameManager.ManagePowerupText(1);
+                    break;
+
+                case 2:
+                    //weapon
+                    weaponType = 2;
+                    StartCoroutine(WeaponPowerDown());
+                    gameManager.ManagePowerupText(2);
+                    break;
+                
+                case 3:
+                    //weapon
+                    weaponType = 3;
+                    StartCoroutine(WeaponPowerDown()); 
+                    gameManager.ManagePowerupText(3);
+                    break;
+
+                case 4:
+                    //shield
+                    //shieldPrefab.SetActive(true);
+                    gameManager.ManagePowerupText(4);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

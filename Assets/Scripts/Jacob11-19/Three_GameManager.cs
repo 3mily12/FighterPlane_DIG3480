@@ -45,6 +45,7 @@ public class Three_GameManager : MonoBehaviour
         Instantiate(playerPrefab, transform.position, Quaternion.identity);
         AddScore(0);
 
+
         CreateSky();
 
         InvokeRepeating("CreateEnemyOne", 1, 2);
@@ -68,6 +69,45 @@ public class Three_GameManager : MonoBehaviour
     {
         Instantiate(powerUpPrefab, new Vector3(Random.Range(-horizontalScreenSize * 0.8f, horizontalScreenSize * 0.8f), Random.Range(0 *0.8f, -4.0f), 0), Quaternion.identity);
         Debug.Log("power up created");
+    }
+
+
+    public void ManagePowerupText(int powerupType) 
+    {
+        switch (powerupType) 
+        {
+            case 1:
+                powerUpText.text = "Speed Boost";
+                break;
+            case 2:
+                powerUpText.text = "Double Shot";
+                break;
+            case 3:
+                powerUpText.text = "Triple Shot";
+                break;
+            case 4:
+                powerUpText.text = "Shield Activated";
+                break;
+            default:
+                powerUpText.text = "None";
+                break;
+        }
+    }
+
+    public void PlaySound(int soundType) 
+    {
+        AudioSource audioSource = audioPlayer.GetComponent<AudioSource>();
+        switch (soundType) 
+        {
+            case 1:
+                audioSource.PlayOneShot(powerUpSound);
+                break;
+            case 2:
+                audioSource.PlayOneShot(powerDownSound);
+                break;
+            default :
+                break;
+        }
     }
 
 
