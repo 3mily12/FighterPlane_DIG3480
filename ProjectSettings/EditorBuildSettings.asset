@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JACOBscene.unity
     guid: 4b399819a7e3a8d4facaf800ed19633f
+  - enabled: 1
+    path: Assets/Scenes/JACOBMainMenu.unity
+    guid: e274f45ae836f1a458560e2c4f40b794
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

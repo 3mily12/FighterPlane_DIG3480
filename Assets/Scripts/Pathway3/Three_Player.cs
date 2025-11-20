@@ -20,7 +20,6 @@ public class Three_Player : MonoBehaviour
 
     private float horizontalInput;
     private float verticalInput;
-
     private float horizontalScreenLimit = 9.5f;
     //private float verticalScreenLimit = 6.5f;
 
@@ -36,9 +35,12 @@ public class Three_Player : MonoBehaviour
     // 4 units below screen center (bottom of the game screen for me)
     private float verticalDownLimit = -4.0f;
 
+    private bool poweredUp;
+
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<Three_GameManager>();
+        thrusterPrefab = GameObject.Find("Thruster");
         lives = 3;
         playerSpeed = 6f;
         gameManager.ChangeLivesText(lives);
@@ -75,7 +77,24 @@ public class Three_Player : MonoBehaviour
             //Debug.Log("Pew  Pew" + verticalScreenLimit); // Debug log, try to use a variable that changes often to test
 
             //spawn bullet at player position with 1 space of padding --> Quaternion basically means that it will spawn in turned the way the player is.
-            Instantiate(bulletPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+
+            //amount of bullets instantiated changes if weapon upgrade achieved, previously unimplemented power-up - JACOB
+            
+            if (weaponType == 2)
+            {
+                Instantiate(bulletPrefab, transform.position + new Vector3(0.5f, 1, 0), Quaternion.identity);
+                Instantiate(bulletPrefab, transform.position + new Vector3(-0.5f, 1, 0), Quaternion.identity);
+            }
+            else if (weaponType == 3)
+            {
+                Instantiate(bulletPrefab, transform.position + new Vector3(1, 1, 0), Quaternion.identity);
+                Instantiate(bulletPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+                Instantiate(bulletPrefab, transform.position + new Vector3(-1, 1, 0), Quaternion.identity);
+            }
+            else 
+            {
+                Instantiate(bulletPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+            }
         }
     }
 
@@ -115,6 +134,7 @@ public class Three_Player : MonoBehaviour
         gameManager.ManagePowerupText(0);
         gameManager.PlaySound(2);
         thrusterPrefab.SetActive(false);
+        poweredUp = false;
     }
 
     IEnumerator WeaponPowerDown()
@@ -123,12 +143,13 @@ public class Three_Player : MonoBehaviour
         weaponType = 1;
         gameManager.ManagePowerupText(0);
         gameManager.PlaySound(2);
+        poweredUp = false;
     }
 
     //Power up activates when collided with by player
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Powerup") 
+        if (collision.tag == "Powerup" && poweredUp == false) 
         {
             Destroy(collision.gameObject);
             int whichPowerup = Random.Range(1, 4);
@@ -140,6 +161,7 @@ public class Three_Player : MonoBehaviour
                     playerSpeed = 10f;
                     thrusterPrefab.SetActive(true);
                     StartCoroutine(SpeedPowerDown());
+                    poweredUp = true;
                     gameManager.ManagePowerupText(1);
                     break;
 
@@ -147,19 +169,22 @@ public class Three_Player : MonoBehaviour
                     //weapon
                     weaponType = 2;
                     StartCoroutine(WeaponPowerDown());
+                    poweredUp = true;
                     gameManager.ManagePowerupText(2);
                     break;
                 
                 case 3:
                     //weapon
                     weaponType = 3;
-                    StartCoroutine(WeaponPowerDown()); 
+                    StartCoroutine(WeaponPowerDown());
+                    poweredUp = true;
                     gameManager.ManagePowerupText(3);
                     break;
 
                 case 4:
                     //shield
                     //shieldPrefab.SetActive(true);
+                    poweredUp = true; //Remember to set poweredUp to false when creating its Coroutine!
                     gameManager.ManagePowerupText(4);
                     break;
                 default:
