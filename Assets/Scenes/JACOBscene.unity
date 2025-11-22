@@ -1312,6 +1312,10 @@ MonoBehaviour:
   audioPlayer: {fileID: 2057593310}
   powerUpSound: {fileID: 8300000, guid: 752ca85f206f14146942c3fcafbdd492, type: 3}
   powerDownSound: {fileID: 8300000, guid: 86237706879f3c44db594d2c5cb1f7b3, type: 3}
+  shieldThunk: {fileID: 8300000, guid: 4eb3d9311367a8749ab3bc04fe44c3a6, type: 3}
+  shieldBreak: {fileID: 8300000, guid: bcbfaffda75c12440bda38b37d8c79c1, type: 3}
+  bulletSound: {fileID: 8300000, guid: 45bc46f9ad60e8c40b1e9ffdfb0832c1, type: 3}
+  dieSound: {fileID: 8300000, guid: 854e967832509ab4685ca53779438af1, type: 3}
   livesText: {fileID: 1865339266}
   scoreText: {fileID: 1822251748}
   powerUpText: {fileID: 1393169246}

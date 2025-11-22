@@ -32,6 +32,7 @@ public class Three_Enemy : MonoBehaviour
             whatDidIHit.GetComponent<Three_Player>().LoseALife();
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
+
         }
         else if (whatDidIHit.tag == "Weapons")
         {
@@ -40,6 +41,7 @@ public class Three_Enemy : MonoBehaviour
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             gameManager.AddScore(5);
             Destroy(this.gameObject);
+
         }
     }
 }

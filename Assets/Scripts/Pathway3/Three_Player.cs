@@ -36,6 +36,7 @@ public class Three_Player : MonoBehaviour
     private float verticalDownLimit = -4.0f;
 
     private bool poweredUp;
+    public bool shieldActive;
 
     void Start()
     {
@@ -46,7 +47,9 @@ public class Three_Player : MonoBehaviour
         gameManager.ChangeLivesText(lives);
         weaponType = 1;
         thrusterPrefab.SetActive(false);
-        //This is like a create script in GMS
+        shieldPrefab.SetActive(false);
+
+        shieldActive = false;
 
     }
 
@@ -60,14 +63,22 @@ public class Three_Player : MonoBehaviour
     {
         //lives = lives - 1;
         //lives -= 1;
-        lives--;
-        gameManager.ChangeLivesText(lives);
-        if (lives == 0)
-        {
-            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
-            gameManager.GameOver();
+        if (shieldActive == true) {
+            Debug.Log("Protected!");
+            gameManager.PlaySound(3);
         }
+        else {
+            lives--;
+            gameManager.ChangeLivesText(lives);
+            if (lives == 0)
+            {
+                Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+                Destroy(this.gameObject);
+                gameManager.PlaySound(6);
+                gameManager.GameOver();
+            }
+        }
+
     }
     void Shooting()
     {
@@ -84,16 +95,22 @@ public class Three_Player : MonoBehaviour
             {
                 Instantiate(bulletPrefab, transform.position + new Vector3(0.5f, 1, 0), Quaternion.identity);
                 Instantiate(bulletPrefab, transform.position + new Vector3(-0.5f, 1, 0), Quaternion.identity);
+                
+                gameManager.PlaySound(5);
             }
             else if (weaponType == 3)
             {
                 Instantiate(bulletPrefab, transform.position + new Vector3(1, 1, 0), Quaternion.identity);
                 Instantiate(bulletPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
                 Instantiate(bulletPrefab, transform.position + new Vector3(-1, 1, 0), Quaternion.identity);
+
+                gameManager.PlaySound(5);
             }
             else 
             {
                 Instantiate(bulletPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+
+                gameManager.PlaySound(5);
             }
         }
     }
@@ -146,13 +163,24 @@ public class Three_Player : MonoBehaviour
         poweredUp = false;
     }
 
+    IEnumerator ShieldPowerDown()
+    {
+        yield return new WaitForSeconds(3f);
+        gameManager.ManagePowerupText(0);
+        gameManager.PlaySound(4);
+        shieldActive = false;
+        shieldPrefab.SetActive(false);
+
+        poweredUp = false;
+    }
+
     //Power up activates when collided with by player
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Powerup" && poweredUp == false) 
         {
             Destroy(collision.gameObject);
-            int whichPowerup = Random.Range(1, 4);
+            int whichPowerup = Random.Range(1, 5);
             gameManager.PlaySound(1);
             switch (whichPowerup) 
             {
@@ -183,8 +211,10 @@ public class Three_Player : MonoBehaviour
 
                 case 4:
                     //shield
-                    //shieldPrefab.SetActive(true);
-                    poweredUp = true; //Remember to set poweredUp to false when creating its Coroutine!
+                    shieldActive = true;
+                    shieldPrefab.SetActive(true);
+                    StartCoroutine(ShieldPowerDown());
+                    poweredUp = true; //Remember to set poweredUp to false when creating its Coroutine! || Got it! -Emily
                     gameManager.ManagePowerupText(4);
                     break;
                 default:

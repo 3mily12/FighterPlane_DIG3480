@@ -20,6 +20,10 @@ public class Three_GameManager : MonoBehaviour
 
     public AudioClip powerUpSound;
     public AudioClip powerDownSound;
+    public AudioClip shieldThunk;
+    public AudioClip shieldBreak;
+    public AudioClip bulletSound;
+    public AudioClip dieSound;
 
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI scoreText;
@@ -97,6 +101,7 @@ public class Three_GameManager : MonoBehaviour
     public void PlaySound(int soundType) 
     {
         AudioSource audioSource = audioPlayer.GetComponent<AudioSource>();
+
         switch (soundType) 
         {
             case 1:
@@ -104,6 +109,22 @@ public class Three_GameManager : MonoBehaviour
                 break;
             case 2:
                 audioSource.PlayOneShot(powerDownSound);
+                break;
+            case 3:
+                // Player hits somethng w/shield
+                audioSource.PlayOneShot(shieldThunk);
+                break;
+            case 4:
+                // Shield breaks
+                audioSource.PlayOneShot(shieldBreak);
+                break;
+            case 5:
+                // Gun shooting sound
+                audioSource.PlayOneShot(bulletSound);
+                break;
+            case 6:
+                // Player dies
+                audioSource.PlayOneShot(dieSound);
                 break;
             default :
                 break;
